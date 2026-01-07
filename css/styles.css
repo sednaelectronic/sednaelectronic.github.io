@@ -933,6 +933,19 @@ section {
     font-size: 0.95rem;
 }
 
+.footer-section p strong {
+    color: var(--primary-light);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.footer-section a svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
 .footer-section ul {
     list-style: none;
     padding: 0;
