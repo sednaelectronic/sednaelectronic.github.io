@@ -44,8 +44,8 @@ const projects = [
     },
     {
         id: 'lidar-2d',
-        name: 'Lidar 2D Scanner',
-        description: 'Two-axis scanning system for people passage detection and access control in open areas.',
+        name: 'Ladar 2D Scanner',
+        description: 'Perimeter protection system for open environments, industrial sites, and warehouses with 360-degree coverage.',
         slug: 'lidar-2d',
         category: 'Sensing'
     },
@@ -159,18 +159,20 @@ const projectDetails = {
         targetUsers: 'Advanced manufacturing professionals, precision alignment specialists, and technical experts requiring enhanced laser projection capabilities.'
     },
     'lidar-2d': {
-        title: 'Lidar 2D Scanner',
-        subtitle: 'People Passage Detection System',
-        description: 'LADAR v1 is a single-unit two-axis scanning system designed for open-area people passage detection and access control. The system uses a LiDAR distance sensor mounted on a motorized two-axis gimbal to perform raster scanning of a detection area, analyzing distance measurements to determine presence and passage events.',
-        purpose: 'The system enables reliable people detection and passage monitoring for access control, security applications, and occupancy monitoring in open areas without physical barriers.',
+        title: 'Ladar 2D Scanner',
+        subtitle: 'Perimeter Protection System',
+        description: 'The Ladar 2D Scanner is a professional perimeter protection system designed for open environments, industrial sites, and warehouses. The system performs scanning and detection of unauthorized persons and objects using a non-visible wavelength laser, providing reliable security monitoring without visual intrusion. The system features a 360-degree Field of View (FOV) for full-area coverage, enabling comprehensive perimeter protection with a single unit.',
+        purpose: 'The system enables reliable detection and monitoring of unauthorized access for perimeter protection, security applications, and infrastructure protection in open areas. Its wide-area coverage, reliability, and suitability for security-critical applications make it an essential component of modern perimeter protection systems.',
         useCases: [
-            'Entry and exit point monitoring',
-            'People movement detection in open areas',
-            'Access control system integration',
+            'Perimeter protection in open environments',
+            'Industrial site security monitoring',
+            'Warehouse access control and monitoring',
+            'Unauthorized person and object detection',
             'Security and surveillance applications',
-            'Occupancy monitoring and counting'
+            'Critical infrastructure protection',
+            'Multi-device networked security systems'
         ],
-        targetUsers: 'Security professionals, facility managers, access control system integrators, and safety coordinators requiring reliable people detection capabilities.'
+        targetUsers: 'Security professionals, facility managers, access control system integrators, and safety coordinators requiring reliable perimeter protection capabilities for industrial and critical infrastructure applications.'
     },
     'loop-v1': {
         title: 'Loop V1.0',
@@ -203,14 +205,16 @@ const projectDetails = {
     'rasad-metro-v1': {
         title: 'Rasad (Metro) V1.0',
         subtitle: 'Railway Safety Monitoring System',
-        description: 'Rasad (also known as Metro) v1.0 is a comprehensive railway/metro safety monitoring system designed to enhance passenger safety on metro platforms. The system automatically detects train movement and passenger safety violations, providing real-time alerts to station operators.',
-        purpose: 'The system addresses critical safety concerns in metro operations by monitoring train entry and exit events, detecting passenger safety violations, identifying unauthorized access to restricted areas, and providing immediate visual and audio warnings to station staff.',
+        description: 'Rasad (also known as Metro) v1.0 is a comprehensive railway/metro safety monitoring system designed to enhance passenger safety on metro platforms. The system is designed to detect train entry and exit at metro stations, as well as monitor passenger crossing of the yellow safety line at platform edges to enhance operational and passenger safety. The system automatically detects train movement and passenger safety violations, providing real-time alerts to station operators.',
+        purpose: 'The system addresses critical safety concerns in metro operations by monitoring train entry and exit events, detecting passenger safety violations such as crossing the yellow safety line, identifying unauthorized access to restricted areas, and providing immediate visual and audio warnings to station staff. The system emphasizes passenger safety, reliable train detection, and real-time monitoring in metro environments.',
         useCases: [
             'Metro platform safety monitoring',
             'Train movement tracking in tunnels',
             'Passenger safety line violation detection',
             'Tunnel intrusion detection',
-            'Platform door status monitoring'
+            'Platform door status monitoring',
+            'Real-time train arrival and departure detection',
+            'Passenger safety alert systems'
         ],
         targetUsers: 'Metro station operators, railway safety personnel, transit authority managers, and public transportation safety coordinators responsible for passenger safety in metro systems.'
     }
