@@ -1283,3 +1283,22 @@ html[dir="rtl"] .back-link::before {
 html[dir="rtl"] .back-link {
     direction: rtl;
 }
+
+/* Fix number direction in RTL */
+html[dir="rtl"] .number-ltr,
+html[dir="rtl"] [dir="ltr"] {
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: embed;
+}
+
+/* Auto-fix numbers in RTL content - numbers should display LTR */
+html[dir="rtl"] {
+    unicode-bidi: embed;
+}
+
+html[dir="rtl"] p,
+html[dir="rtl"] li,
+html[dir="rtl"] div {
+    unicode-bidi: plaintext;
+}
