@@ -305,19 +305,56 @@ function loadHomePage() {
     if (!projectsGrid) return;
     
     projectsGrid.innerHTML = projects.map(project => `
-        <div class="project-card">
-            <div class="project-image">
-                <span>${getProjectIcon(project.category)}</span>
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">${project.name}</h3>
-                <p class="project-description">${project.description}</p>
-                <div class="project-link">
-                    <a href="projects/${project.slug}.html" class="btn btn-secondary">View Product</a>
+        <a href="projects/${project.slug}.html" class="project-card-link" data-project="${project.id}">
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('${getProjectImage(project.category)}');">
+                    <div class="project-overlay"></div>
+                    <div class="project-content-overlay">
+                        <h3 class="project-title">${project.name}</h3>
+                        <p class="project-description">${project.description}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     `).join('');
+    
+    // Add mobile tap functionality
+    const projectCards = document.querySelectorAll('.project-card-link');
+    projectCards.forEach(card => {
+        let touchStartTime = 0;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        card.addEventListener('touchstart', function(e) {
+            touchStartTime = Date.now();
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        card.addEventListener('touchend', function(e) {
+            const touchEndTime = Date.now();
+            const touchDuration = touchEndTime - touchStartTime;
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const deltaX = Math.abs(touchEndX - touchStartX);
+            const deltaY = Math.abs(touchEndY - touchStartY);
+            
+            // If it's a quick tap (not a swipe) and card is not active, toggle it
+            if (touchDuration < 300 && deltaX < 10 && deltaY < 10) {
+                const projectCard = this.querySelector('.project-card');
+                const isActive = projectCard.classList.contains('active');
+                
+                if (!isActive) {
+                    // First tap: show description
+                    e.preventDefault();
+                    projectCard.classList.add('active');
+                } else {
+                    // Second tap: navigate
+                    window.location.href = this.href;
+                }
+            }
+        }, { passive: false });
+    });
 }
 
 // Load project page
@@ -442,6 +479,21 @@ function getProjectIcon(category) {
         'Safety Systems': '🛡️'
     };
     return icons[category] || '🔧';
+}
+
+// Get project image by category
+function getProjectImage(category) {
+    const imageMap = {
+        '3D Scanning': 'Image/3d scanners.png',
+        'Aviation': 'Image/control systems.png',
+        'Laser Systems': 'Image/Lidar.png',
+        'Sensing': 'Image/Lidar.png',
+        'Traffic Systems': 'Image/wireless communication.png',
+        'Control Systems': 'Image/control systems.png',
+        'Measurement': 'Image/Lidar.png',
+        'Safety Systems': 'Image/safety system.png'
+    };
+    return imageMap[category] || 'Image/embedded.png';
 }
 
 // Get project icon by slug
