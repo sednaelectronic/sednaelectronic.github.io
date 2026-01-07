@@ -289,6 +289,23 @@ section {
 .domain-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.domain-icon-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: brightness(1.1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+    transition: var(--transition);
+}
+
+.domain-card:hover .domain-icon-image {
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(59, 130, 246, 0.5));
+    transform: scale(1.05);
 }
 
 .domain-card h4 {
