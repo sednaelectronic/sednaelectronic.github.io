@@ -100,6 +100,33 @@ body {
     border-radius: 6px;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: var(--transition);
+    min-width: 45px;
+}
+
+.lang-switch:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 50%, #1e3a8a 100%);
+}
+
 .nav-menu a:hover {
     color: var(--primary-light);
     background-color: var(--bg-card-hover);
@@ -1009,8 +1036,28 @@ section {
         left: 0;
     }
 
+    html[dir="rtl"] .nav-menu {
+        left: auto;
+        right: -100%;
+    }
+
+    html[dir="rtl"] .nav-menu.active {
+        right: 0;
+        left: auto;
+    }
+
     .nav-toggle {
         display: flex;
+    }
+
+    .nav-actions {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    html[dir="rtl"] .nav-actions {
+        margin-right: 0;
+        margin-left: auto;
     }
 
     .hero-title {
@@ -1180,4 +1227,59 @@ section {
     .footer-section p {
         font-size: 0.9rem;
     }
+
+    .nav-actions {
+        margin-left: 1rem;
+    }
+}
+
+/* RTL Support for Persian Version */
+html[dir="rtl"] {
+    direction: rtl;
+}
+
+html[dir="rtl"] .navbar .container {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .nav-menu {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .nav-actions {
+    order: -1;
+}
+
+html[dir="rtl"] .hero-content,
+html[dir="rtl"] .about-content,
+html[dir="rtl"] .team-content,
+html[dir="rtl"] .footer-content {
+    text-align: right;
+}
+
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .section-subtitle {
+    text-align: center;
+}
+
+html[dir="rtl"] .domains-grid,
+html[dir="rtl"] .projects-grid,
+html[dir="rtl"] .team-members {
+    direction: rtl;
+}
+
+html[dir="rtl"] .footer-section ul li::before {
+    content: '←';
+    margin-right: 0;
+    margin-left: 0.75rem;
+}
+
+html[dir="rtl"] .back-link::before {
+    content: '→';
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .back-link {
+    direction: rtl;
 }
