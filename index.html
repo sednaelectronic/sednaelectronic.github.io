@@ -3,17 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Web Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sedna Electronics - Advanced Electronics Solutions</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Sedna Electronics</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container">
-        <h1>🚀 Test Web Page</h1>
-        <p id="message">Click the button to test JavaScript</p>
-        <button onclick="changeText()">Click Me</button>
-    </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Advanced Electronics Solutions</h1>
+                <p class="hero-subtitle">Innovative embedded systems and sensing technologies for industrial applications</p>
+                <a href="#projects" class="btn btn-primary">Explore Our Projects</a>
+            </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Sedna Electronics</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Sedna Electronics is a specialized electronics development team focused on creating advanced embedded systems and sensing solutions for industrial and commercial applications. Our expertise spans across precision measurement systems, laser-based technologies, and intelligent control systems.</p>
+                    <p>We combine deep technical knowledge with practical engineering to deliver reliable, high-performance solutions that address real-world challenges in various industries including transportation, logistics, safety systems, and industrial automation.</p>
+                </div>
+            </div>
+
+            <!-- Activity Domains -->
+            <div class="domains">
+                <h3 class="subsection-title">Our Expertise</h3>
+                <div class="domains-grid">
+                    <div class="domain-card">
+                        <div class="domain-icon">🔬</div>
+                        <h4>Precision Sensing</h4>
+                        <p>Advanced LiDAR and laser-based distance measurement systems with sub-millimeter accuracy</p>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-icon">🤖</div>
+                        <h4>Embedded Systems</h4>
+                        <p>Custom microcontroller solutions using STM32, ESP32, and ARM-based platforms</p>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-icon">📡</div>
+                        <h4>Wireless Communication</h4>
+                        <p>Reliable wireless sensor networks and IoT connectivity solutions</p>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-icon">🎯</div>
+                        <h4>Control Systems</h4>
+                        <p>Intelligent automation and real-time control systems for industrial applications</p>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-icon">📊</div>
+                        <h4>3D Scanning</h4>
+                        <p>High-precision 3D scanning and point cloud generation systems</p>
+                    </div>
+                    <div class="domain-card">
+                        <div class="domain-icon">🛡️</div>
+                        <h4>Safety Systems</h4>
+                        <p>Critical safety monitoring and alert systems for transportation and public spaces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">Dedicated electronics engineers and developers committed to innovation</p>
+            <div class="team-content">
+                <div class="team-intro">
+                    <p>Our team consists of experienced electronics engineers, embedded systems developers, and firmware specialists. We work collaboratively to design, develop, and deploy cutting-edge electronic solutions that meet the highest standards of quality and reliability.</p>
+                    <p>With expertise in hardware design, PCB development, firmware programming, and system integration, we deliver complete solutions from concept to deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Our Projects</h2>
+            <p class="section-subtitle">Innovative electronics solutions for diverse applications</p>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sedna Electronics</h3>
+                    <p>Advanced electronics solutions for industrial applications</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>For inquiries and collaborations</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sedna Electronics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
 </body>
 </html>
