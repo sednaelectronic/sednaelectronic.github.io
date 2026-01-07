@@ -64,20 +64,6 @@ const projects = [
         category: 'Traffic Systems'
     },
     {
-        id: 'pcr-v1',
-        name: 'PCR V1.0',
-        description: 'Precision timing and temperature control system for laboratory and industrial applications.',
-        slug: 'pcr-v1',
-        category: 'Control Systems'
-    },
-    {
-        id: 'rangefinder-v1',
-        name: 'RangeFinder V1.0',
-        description: 'High-precision phase-based laser distance measurement system with sub-millimeter accuracy.',
-        slug: 'rangefinder-v1',
-        category: 'Measurement'
-    },
-    {
         id: 'rasad-metro-v1',
         name: 'Rasad (Metro) V1.0',
         description: 'Railway safety monitoring system for detecting train movement and passenger safety violations on metro platforms.',
@@ -213,34 +199,6 @@ const projectDetails = {
             'Traffic data collection and analysis'
         ],
         targetUsers: 'Advanced traffic management professionals, intelligent transportation system integrators, and municipal traffic control specialists requiring enhanced detection capabilities.'
-    },
-    'pcr-v1': {
-        title: 'PCR V1.0',
-        subtitle: 'Precision Control System',
-        description: 'PCR v1.0 is an embedded control system designed for precise timing and temperature-controlled operations. The system provides millisecond-accurate timing control and real-time temperature monitoring for laboratory and industrial applications.',
-        purpose: 'The system enables precise timing control and temperature monitoring for applications requiring accurate time-based operations and temperature management in controlled environments.',
-        useCases: [
-            'Laboratory equipment control',
-            'Temperature-controlled processes',
-            'Precision timing applications',
-            'Industrial automation',
-            'Research and development projects'
-        ],
-        targetUsers: 'Laboratory technicians, process engineers, research scientists, and industrial automation specialists requiring precise timing and temperature control capabilities.'
-    },
-    'rangefinder-v1': {
-        title: 'RangeFinder V1.0',
-        subtitle: 'High-Precision Distance Measurement',
-        description: 'Range Finder v1.0 is a laser-based distance measurement system that uses advanced phase-detection technology to accurately measure distances to objects. The system employs continuous wave (CW) laser modulation with multiple frequencies to achieve high accuracy and resolve measurement ambiguities.',
-        purpose: 'The system provides high-speed, high-accuracy distance measurements for applications requiring precise distance sensing with sub-millimeter accuracy.',
-        useCases: [
-            'Industrial automation and robotics',
-            'Construction and surveying equipment',
-            'Quality control systems',
-            'Navigation and positioning systems',
-            'Distance monitoring and control'
-        ],
-        targetUsers: 'Industrial automation engineers, surveyors, quality control professionals, and robotics engineers requiring high-precision distance measurement capabilities.'
     },
     'rasad-metro-v1': {
         title: 'Rasad (Metro) V1.0',
@@ -534,9 +492,7 @@ function getProjectImage(projectId) {
         'lidar-2d': 'Image/Projects/Lidar 2D Scanner V1.0.png',
         'loop-v1': 'Image/Projects/Loop V1.png',
         'loop-v2': 'Image/Projects/Loop V2.0.png',
-        'rasad-metro-v1': 'Image/Projects/Rasad (Metro) V1.0.png',
-        'pcr-v1': 'Image/control systems.png', // Default placeholder
-        'rangefinder-v1': 'Image/Lidar.png' // Default placeholder
+        'rasad-metro-v1': 'Image/Projects/Rasad (Metro) V1.0.png'
     };
     return imageMap[projectId] || 'Image/embedded.png'; // Fallback placeholder
 }
@@ -556,8 +512,6 @@ function getProjectIconBySlug(slug) {
         'lidar-2d': 'Sensing',
         'loop-v1': 'Traffic Systems',
         'loop-v2': 'Traffic Systems',
-        'pcr-v1': 'Control Systems',
-        'rangefinder-v1': 'Measurement',
         'rasad-metro-v1': 'Safety Systems'
     };
     return getProjectIcon(categoryMap[slug] || '');
