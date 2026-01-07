@@ -253,33 +253,15 @@ section {
 }
 
 .domain-card {
-    background: var(--gradient-card);
-    padding: 2.5rem 2rem;
+    width: 100%;
+    height: 350px;
+    position: relative;
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
-    text-align: center;
-    border: 1px solid var(--border-color);
-    position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.domain-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: var(--transition);
-}
-
-.domain-card:hover::before {
-    transform: scaleX(1);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
 }
 
 .domain-card:hover {
@@ -288,43 +270,81 @@ section {
     border-color: var(--primary-color);
 }
 
-.domain-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 120px;
-    padding: 1rem 0;
-}
-
-.domain-icon-image {
+.domain-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 140px;
-    height: auto;
-    max-height: 120px;
-    object-fit: contain;
-    filter: brightness(1.15) drop-shadow(0 4px 12px rgba(59, 130, 246, 0.4));
-    transition: var(--transition);
-    display: block;
-    margin: 0 auto;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: filter 0.4s ease;
+    filter: brightness(1) blur(0);
 }
 
-.domain-card:hover .domain-icon-image {
-    filter: brightness(1.3) drop-shadow(0 6px 20px rgba(59, 130, 246, 0.6));
-    transform: scale(1.08);
+.domain-card:hover .domain-image,
+.domain-card.active .domain-image {
+    filter: brightness(0.5) blur(5px);
+}
+
+.domain-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.2) 50%, rgba(15, 23, 42, 0.8) 100%);
+    transition: background 0.4s ease;
+    z-index: 1;
+}
+
+.domain-card:hover .domain-overlay,
+.domain-card.active .domain-overlay {
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.5) 50%, rgba(15, 23, 42, 0.95) 100%);
+}
+
+.domain-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem;
+    z-index: 2;
+    color: white;
 }
 
 .domain-card h4 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    transition: var(--transition);
+    line-height: 1.3;
 }
 
 .domain-card p {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0);
+    font-size: 1rem;
     line-height: 1.6;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    margin: 0;
+}
+
+.domain-card:hover p,
+.domain-card.active p {
+    color: rgba(255, 255, 255, 0.95);
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
 }
 
 /* Team Section */
@@ -885,6 +905,23 @@ section {
 
     .domains-grid {
         grid-template-columns: 1fr;
+    }
+
+    .domain-card {
+        height: 300px;
+    }
+
+    .domain-content {
+        padding: 1.5rem;
+    }
+
+    .domain-card h4 {
+        font-size: 1.375rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .domain-card p {
+        font-size: 0.95rem;
     }
 
     .projects-grid {

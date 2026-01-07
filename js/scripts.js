@@ -297,6 +297,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Add mobile tap functionality for domain cards
+    const domainCards = document.querySelectorAll('.domain-card');
+    domainCards.forEach(card => {
+        let touchStartTime = 0;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        card.addEventListener('touchstart', function(e) {
+            touchStartTime = Date.now();
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        card.addEventListener('touchend', function(e) {
+            const touchEndTime = Date.now();
+            const touchDuration = touchEndTime - touchStartTime;
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const deltaX = Math.abs(touchEndX - touchStartX);
+            const deltaY = Math.abs(touchEndY - touchStartY);
+            
+            // If it's a quick tap (not a swipe), toggle the active state
+            if (touchDuration < 300 && deltaX < 10 && deltaY < 10) {
+                this.classList.toggle('active');
+            }
+        }, { passive: false });
+    });
 });
 
 // Load home page
