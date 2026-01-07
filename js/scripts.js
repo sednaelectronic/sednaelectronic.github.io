@@ -332,18 +332,17 @@ function loadHomePage() {
     const projectsGrid = document.getElementById('projectsGrid');
     if (!projectsGrid) return;
     
+    // Preload images for better performance
+    preloadProjectImages();
+    
     projectsGrid.innerHTML = projects.map(project => {
-        const projectImage = getProjectImage(project.slug, project.name);
+        const imagePath = getProjectImage(project.id, project.name);
         const imageAlt = getProjectImageAlt(project.name);
         
         return `
         <a href="projects/${project.slug}.html" class="project-card-link" data-project="${project.id}">
             <div class="project-card">
-                <div class="project-image" 
-                     data-bg-image="${projectImage}"
-                     role="img"
-                     aria-label="${imageAlt}"
-                     loading="lazy">
+                <div class="project-image" style="background-image: url('${imagePath}');" role="img" aria-label="${imageAlt}">
                     <div class="project-overlay"></div>
                     <div class="project-content-overlay">
                         <h3 class="project-title">${project.name}</h3>
@@ -354,25 +353,6 @@ function loadHomePage() {
         </a>
         `;
     }).join('');
-    
-    // Load images with lazy loading and error handling
-    setTimeout(() => {
-        const projectImages = document.querySelectorAll('.project-image[data-bg-image]');
-        projectImages.forEach(imgElement => {
-            const imageUrl = imgElement.getAttribute('data-bg-image');
-            const img = new Image();
-            img.onload = function() {
-                imgElement.style.backgroundImage = `url('${imageUrl}')`;
-                imgElement.classList.add('loaded');
-            };
-            img.onerror = function() {
-                // Fallback to default placeholder if image fails to load
-                imgElement.style.backgroundImage = 'url(\'Image/embedded.png\')';
-                imgElement.classList.add('loaded');
-            };
-            img.src = imageUrl;
-        });
-    }, 0);
     
     // Add mobile tap functionality
     const projectCards = document.querySelectorAll('.project-card-link');
@@ -537,24 +517,39 @@ function getProjectIcon(category) {
     return icons[category] || '🔧';
 }
 
-// Get project image by project slug/ID
-function getProjectImage(projectSlug, projectName) {
+// Get project image by project ID/slug
+function getProjectImage(projectId, projectName) {
+    // Map project IDs to their corresponding image filenames
     const projectImageMap = {
         'depograph-v1': 'Image/Projects/Depo Graph V1.0.png',
         'depograph-v2': 'Image/Projects/Depo Graph V2.0.png',
         'depograph-v25': 'Image/Projects/Depo Graph V2.5.png',
-        'lidar-2d': 'Image/Projects/Ladar V1.0.png',
-        'loop-v1': 'Image/Projects/Loop V1.png'
+        'dgs-v1': 'Image/Projects/DGS V1.0.png',
+        'laserline-v1': 'Image/Projects/Laser Line V1.0.png',
+        'laserline-v2': 'Image/Projects/Laser Line V2.0.png',
+        'lidar-2d': 'Image/Projects/Lidar 2D Scanner V1.0.png',
+        'loop-v1': 'Image/Projects/Loop V1.png',
+        'loop-v2': 'Image/Projects/Loop V2.0.png',
+        'pcr-v1': 'Image/embedded.png', // Default placeholder
+        'rangefinder-v1': 'Image/Lidar.png', // Default placeholder
+        'rasad-metro-v1': 'Image/safety system.png' // Default placeholder
     };
     
-    // Return project-specific image if available, otherwise use default placeholder
-    // Default placeholder uses a generic embedded systems image
-    return projectImageMap[projectSlug] || 'Image/embedded.png';
+    return projectImageMap[projectId] || 'Image/embedded.png';
 }
 
-// Get project image alt text
+// Get project image alt text for accessibility
 function getProjectImageAlt(projectName) {
     return `Image for ${projectName}`;
+}
+
+// Preload project images for better performance
+function preloadProjectImages() {
+    const imagePaths = projects.map(project => getProjectImage(project.id, project.name));
+    imagePaths.forEach(imagePath => {
+        const img = new Image();
+        img.src = imagePath;
+    });
 }
 
 // Get project icon by slug
