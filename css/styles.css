@@ -75,6 +75,14 @@ body {
     color: var(--text-muted);
     font-weight: 400;
     margin-top: 0.25rem;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.nav-brand-subtitle:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
 }
 
 .nav-menu {
