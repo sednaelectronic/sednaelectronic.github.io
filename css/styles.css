@@ -587,13 +587,18 @@ section {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: var(--transition);
+    transition: filter 0.4s ease;
     filter: brightness(1);
-    /* Optimize image rendering */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    /* Lazy loading support */
-    will-change: filter;
+}
+
+.project-image-src {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    display: block;
 }
 
 .project-card:hover .project-image,
@@ -672,6 +677,15 @@ section {
     background-repeat: no-repeat;
     transition: filter 0.4s ease;
     filter: brightness(1);
+}
+
+.project-image-src {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
 }
 
 .project-card:hover .project-image,

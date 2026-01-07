@@ -332,17 +332,22 @@ function loadHomePage() {
     const projectsGrid = document.getElementById('projectsGrid');
     if (!projectsGrid) return;
     
-    // Preload images for better performance
-    preloadProjectImages();
-    
     projectsGrid.innerHTML = projects.map(project => {
-        const imagePath = getProjectImage(project.id, project.name);
-        const imageAlt = getProjectImageAlt(project.name);
+        const imagePath = getProjectImage(project.id);
+        const imageAlt = `Image for ${project.name}`;
         
         return `
         <a href="projects/${project.slug}.html" class="project-card-link" data-project="${project.id}">
             <div class="project-card">
-                <div class="project-image" style="background-image: url('${imagePath}');" role="img" aria-label="${imageAlt}">
+                <div class="project-image" 
+                     style="background-image: url('${imagePath}');"
+                     role="img"
+                     aria-label="${imageAlt}">
+                    <img src="${imagePath}" 
+                         alt="${imageAlt}" 
+                         class="project-image-src"
+                         loading="lazy"
+                         onerror="this.onerror=null; this.src='${DEFAULT_PROJECT_IMAGE}'; this.parentElement.style.backgroundImage='url(${DEFAULT_PROJECT_IMAGE})';">
                     <div class="project-overlay"></div>
                     <div class="project-content-overlay">
                         <h3 class="project-title">${project.name}</h3>
@@ -517,10 +522,9 @@ function getProjectIcon(category) {
     return icons[category] || '🔧';
 }
 
-// Get project image by project ID/slug
-function getProjectImage(projectId, projectName) {
-    // Map project IDs to their corresponding image filenames
-    const projectImageMap = {
+// Get project image by project ID
+function getProjectImage(projectId) {
+    const imageMap = {
         'depograph-v1': 'Image/Projects/Depo Graph V1.0.png',
         'depograph-v2': 'Image/Projects/Depo Graph V2.0.png',
         'depograph-v25': 'Image/Projects/Depo Graph V2.5.png',
@@ -530,27 +534,15 @@ function getProjectImage(projectId, projectName) {
         'lidar-2d': 'Image/Projects/Lidar 2D Scanner V1.0.png',
         'loop-v1': 'Image/Projects/Loop V1.png',
         'loop-v2': 'Image/Projects/Loop V2.0.png',
-        'pcr-v1': 'Image/embedded.png', // Default placeholder
-        'rangefinder-v1': 'Image/Lidar.png', // Default placeholder
-        'rasad-metro-v1': 'Image/safety system.png' // Default placeholder
+        'rasad-metro-v1': 'Image/Projects/Rasad (Metro) V1.0.png',
+        'pcr-v1': 'Image/control systems.png', // Default placeholder
+        'rangefinder-v1': 'Image/Lidar.png' // Default placeholder
     };
-    
-    return projectImageMap[projectId] || 'Image/embedded.png';
+    return imageMap[projectId] || 'Image/embedded.png'; // Fallback placeholder
 }
 
-// Get project image alt text for accessibility
-function getProjectImageAlt(projectName) {
-    return `Image for ${projectName}`;
-}
-
-// Preload project images for better performance
-function preloadProjectImages() {
-    const imagePaths = projects.map(project => getProjectImage(project.id, project.name));
-    imagePaths.forEach(imagePath => {
-        const img = new Image();
-        img.src = imagePath;
-    });
-}
+// Default placeholder image
+const DEFAULT_PROJECT_IMAGE = 'Image/embedded.png';
 
 // Get project icon by slug
 function getProjectIconBySlug(slug) {
