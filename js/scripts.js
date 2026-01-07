@@ -332,10 +332,18 @@ function loadHomePage() {
     const projectsGrid = document.getElementById('projectsGrid');
     if (!projectsGrid) return;
     
-    projectsGrid.innerHTML = projects.map(project => `
+    projectsGrid.innerHTML = projects.map(project => {
+        const projectImage = getProjectImage(project.slug, project.name);
+        const imageAlt = getProjectImageAlt(project.name);
+        
+        return `
         <a href="projects/${project.slug}.html" class="project-card-link" data-project="${project.id}">
             <div class="project-card">
-                <div class="project-image" style="background-image: url('${getProjectImage(project.category)}');">
+                <div class="project-image" 
+                     data-bg-image="${projectImage}"
+                     role="img"
+                     aria-label="${imageAlt}"
+                     loading="lazy">
                     <div class="project-overlay"></div>
                     <div class="project-content-overlay">
                         <h3 class="project-title">${project.name}</h3>
@@ -344,7 +352,27 @@ function loadHomePage() {
                 </div>
             </div>
         </a>
-    `).join('');
+        `;
+    }).join('');
+    
+    // Load images with lazy loading and error handling
+    setTimeout(() => {
+        const projectImages = document.querySelectorAll('.project-image[data-bg-image]');
+        projectImages.forEach(imgElement => {
+            const imageUrl = imgElement.getAttribute('data-bg-image');
+            const img = new Image();
+            img.onload = function() {
+                imgElement.style.backgroundImage = `url('${imageUrl}')`;
+                imgElement.classList.add('loaded');
+            };
+            img.onerror = function() {
+                // Fallback to default placeholder if image fails to load
+                imgElement.style.backgroundImage = 'url(\'Image/embedded.png\')';
+                imgElement.classList.add('loaded');
+            };
+            img.src = imageUrl;
+        });
+    }, 0);
     
     // Add mobile tap functionality
     const projectCards = document.querySelectorAll('.project-card-link');
@@ -509,19 +537,24 @@ function getProjectIcon(category) {
     return icons[category] || '🔧';
 }
 
-// Get project image by category
-function getProjectImage(category) {
-    const imageMap = {
-        '3D Scanning': 'Image/3d scanners.png',
-        'Aviation': 'Image/control systems.png',
-        'Laser Systems': 'Image/Lidar.png',
-        'Sensing': 'Image/Lidar.png',
-        'Traffic Systems': 'Image/wireless communication.png',
-        'Control Systems': 'Image/control systems.png',
-        'Measurement': 'Image/Lidar.png',
-        'Safety Systems': 'Image/safety system.png'
+// Get project image by project slug/ID
+function getProjectImage(projectSlug, projectName) {
+    const projectImageMap = {
+        'depograph-v1': 'Image/Projects/Depo Graph V1.0.png',
+        'depograph-v2': 'Image/Projects/Depo Graph V2.0.png',
+        'depograph-v25': 'Image/Projects/Depo Graph V2.5.png',
+        'lidar-2d': 'Image/Projects/Ladar V1.0.png',
+        'loop-v1': 'Image/Projects/Loop V1.png'
     };
-    return imageMap[category] || 'Image/embedded.png';
+    
+    // Return project-specific image if available, otherwise use default placeholder
+    // Default placeholder uses a generic embedded systems image
+    return projectImageMap[projectSlug] || 'Image/embedded.png';
+}
+
+// Get project image alt text
+function getProjectImageAlt(projectName) {
+    return `Image for ${projectName}`;
 }
 
 // Get project icon by slug
