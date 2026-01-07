@@ -410,8 +410,8 @@ function generateProjectPageHTML(details, slug) {
                 <a href="index.html#projects" class="back-link">← Back to Projects</a>
                 
                 <div class="project-info">
-                    <div class="project-image-large">
-                        <span>${getProjectIconBySlug(slug)}</span>
+                    <div class="project-image-large" style="background-image: url('${getProjectImageBySlug(slug)}');" role="img" aria-label="Image for ${details.title}">
+                        <img src="${getProjectImageBySlug(slug)}" alt="Image for ${details.title}" class="project-image-large-src" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_PROJECT_IMAGE}'; this.parentElement.style.backgroundImage='url(${DEFAULT_PROJECT_IMAGE})';">
                     </div>
                     
                     <div class="info-section">
@@ -499,6 +499,24 @@ function getProjectImage(projectId) {
 
 // Default placeholder image
 const DEFAULT_PROJECT_IMAGE = 'Image/embedded.png';
+
+// Get project image by slug (for detail pages)
+function getProjectImageBySlug(slug) {
+    const slugToIdMap = {
+        'depograph-v1': 'depograph-v1',
+        'depograph-v2': 'depograph-v2',
+        'depograph-v25': 'depograph-v25',
+        'dgs-v1': 'dgs-v1',
+        'laserline-v1': 'laserline-v1',
+        'laserline-v2': 'laserline-v2',
+        'lidar-2d': 'lidar-2d',
+        'loop-v1': 'loop-v1',
+        'loop-v2': 'loop-v2',
+        'rasad-metro-v1': 'rasad-metro-v1'
+    };
+    const projectId = slugToIdMap[slug] || slug;
+    return getProjectImage(projectId);
+}
 
 // Get project icon by slug
 function getProjectIconBySlug(slug) {
